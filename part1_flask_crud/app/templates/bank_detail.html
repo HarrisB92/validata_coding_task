@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bank Details</title>
+  </head>
+  <body>
+    {% if bank %}
+      <h1>{{ bank.name }}</h1>
+      <p>Location: {{ bank.location }}</p>
+    {% else %}
+      <h1>Bank not found</h1>
+    {% endif %}
+    <p><a href="{{ url_for('banks.list_banks') }}">Back to list</a></p>
+  </body>
+</html>

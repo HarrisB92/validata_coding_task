@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Banks</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('banks.list_banks') }}">Banks</a> |
+    </nav>
+  <hr>
+  <br>
+  <br>
+    <h1>Banks:</h1>
+    {% if banks %}
+      <ul>
+        {% for bank in banks %}
+          <li>
+            <a href="{{ url_for('banks.bank_detail', bank_id=bank.id) }}">
+              {{ bank.name }} ({{ bank.location }})
+            </a>
+            <!-- Delete button (right next to the bank) -->
+            <form action="{{ url_for('banks.delete_bank', bank_id=bank.id) }}"
+                  method="post"
+                  style="display:inline;">
+              <button type="submit"
+                      onclick="return confirm('Delete this bank?')">
+                Delete
+              </button>
+            </form>
+          </li>
+          <br>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No banks found.</p>
+    {% endif %}
+  <p><a href="{{ url_for('banks.new_bank_form') }}">Add a new bank</a></p>
+  </body>
+</html>
