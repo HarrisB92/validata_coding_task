@@ -14,8 +14,8 @@ Target environment:
 
 Standards:
 - Type hints, docstrings, small functions
-- No secrets in code: use environment variables for configuration (DB host/user/password, etc.)
-- Include a `.env.example` (safe placeholder values). Do not commit real secrets; keep `.env` ignored.
+- No secrets in code: use environment variables for configuration
+- Include a `.env.example` with safe placeholder values. Do not commit real secrets; keep `.env` ignored.
 - Use Python `logging` instead of `print`
 - Add comments explaining non-obvious steps (avoid obvious/comment spam)
 
