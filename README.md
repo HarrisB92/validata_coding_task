@@ -33,8 +33,38 @@ validata_coding_task/
 ## Configuration
 
 All configuration is provided via environment variables.
+All configuration is provided via environment variables.
 
 1. Copy the example file:
+
+   cp .env.example .env
+
+2. Adjust values in `.env` to match your local SQL Server instance.
+
+Note:
+The `.env` file is intentionally NOT committed to the repository.
+
+---
+
+## Part 1 — Flask CRUD Application
+
+See `part1_flask_crud/README.md` for:
+
+- Database initialization
+- Running the Flask application
+- REST API usage
+- Running tests
+
+---
+
+## Part 2 — Machine Learning Task
+
+See `part2_ml/README.md` and `part2_ml/report.md` for:
+
+- Dataset description
+- Preprocessing steps
+- Model training and evaluation
+- Findings and insights
 
    cp .env.example .env
 
