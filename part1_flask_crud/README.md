@@ -1,42 +1,109 @@
-# Part 1 Flask CRUD
+PART 1 – FLASK CRUD APPLICATION
+==============================
 
-## Setup
+This project implements a simple Flask application with:
 
-1. Install dependencies:
+- HTML UI routes
+- REST API routes
+- SQLAlchemy ORM
+- Automated tests using pytest
 
-```powershell
-pip install -r requirements.txt
-```
+The application manages banks with full CRUD functionality.
 
-2. Install Microsoft ODBC Driver 18 for SQL Server.
-   - Windows download: https://learn.microsoft.com/sql/connect/odbc/download-odbc-driver-for-sql-server
 
-3. Create the database and table using `db/init.sql`.
+------------------------------------------------------------
+SETUP
+------------------------------------------------------------
 
-4. Configure environment variables (see `.env.example`). Example:
+1. Create and activate a virtual environment (commands in PowerShell)
 
-```
-DB_SERVER=.\SQLEXPRESS
-DB_NAME=validata
-DB_AUTH_MODE=windows
-DB_USER=your_db_user_here
-DB_PASSWORD=your_db_password_here
-DB_TRUST_SERVER_CERT=true
-```
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
 
-5. Run the app:
+2. Install dependencies (from inside the part1_flask_crud\ directory)
 
-```powershell
-python run.py
-```
+   pip install -r requirements.txt
 
-## Endpoints
 
-- REST API: `http://127.0.0.1:5000/api/banks`
-- HTML UI: `http://127.0.0.1:5000/banks/`
+------------------------------------------------------------
+DATABASE CONFIGURATION
+------------------------------------------------------------
 
-## API client
+The application is designed to work with Microsoft SQL Server
+in normal (non-test) usage.
 
-```powershell
-python scripts/api_client.py
-```
+Requirements:
+- Microsoft ODBC Driver 18 for SQL Server
+
+Windows download:
+https://learn.microsoft.com/sql/connect/odbc/download-odbc-driver-for-sql-server
+
+
+Environment variables:
+
+Create a .env file (see .env.example) and configure:
+
+   DB_SERVER=.\SQLEXPRESS
+   DB_NAME=validata
+   DB_AUTH_MODE=windows
+   DB_USER=your_db_user_here
+   DB_PASSWORD=your_db_password_here
+   DB_TRUST_SERVER_CERT=true
+
+Note:
+The .env file is used only for local development and is NOT
+committed to version control.
+
+
+------------------------------------------------------------
+RUN THE APPLICATION
+------------------------------------------------------------
+
+From the part1_flask_crud directory:
+
+   python run.py
+
+
+Available endpoints:
+
+REST API:
+   http://127.0.0.1:5000/api/banks
+
+HTML UI:
+   http://127.0.0.1:5000/banks
+
+Health check:
+   http://127.0.0.1:5000/health
+
+
+------------------------------------------------------------
+RUN TESTS (RECOMMENDED)
+------------------------------------------------------------
+
+Tests use an in-memory SQLite database and do NOT require
+SQL Server.
+
+From the part1_flask_crud directory:
+
+   python -m pytest -q
+
+All tests should pass.
+
+
+------------------------------------------------------------
+API CLIENT (OPTIONAL)
+------------------------------------------------------------
+
+A small API client script is included:
+
+   python scripts/api_client.py
+
+
+------------------------------------------------------------
+NOTES
+------------------------------------------------------------
+
+- The application uses the Flask application factory pattern
+- Database sessions are injected via configuration
+- Tests are isolated and reset database state between runs
+- SQL Server is required only for running the app, not for tests
