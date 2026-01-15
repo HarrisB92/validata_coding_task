@@ -1,3 +1,12 @@
+"""
+Pytest configuration and fixtures.
+
+For unit tests, an in-memory SQLite database is used instead of the SQL Server
+to ensure tests are fast, deterministic, and do not depend on external
+infrastructure. The same SQLAlchemy models and session logic are reused,
+so application behavior is still validated correctly.
+"""
+
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker

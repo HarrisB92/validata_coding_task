@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def build_connection_string(config: AppConfig) -> str:
+    """Build the SQL Server ODBC connection string from config."""
     driver = "ODBC Driver 18 for SQL Server"
     base = (
         f"Driver={{{driver}}};"
@@ -26,6 +27,7 @@ def build_connection_string(config: AppConfig) -> str:
 
 
 def create_session_factory(config: AppConfig) -> Callable[[], Session]:
+    """Create a SQLAlchemy session factory for the configured database."""
     conn_str = build_connection_string(config)
     engine = create_engine(
         f"mssql+pyodbc:///?odbc_connect={quote_plus(conn_str)}",

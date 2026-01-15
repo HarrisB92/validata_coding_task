@@ -11,16 +11,19 @@ from . import api_bp
 
 
 def _get_session() -> Session:
+    """Return a new database session from the app config."""
     session_factory = current_app.config["DB_SESSION_FACTORY"]
     return session_factory()
 
 
 def _serialize_bank(bank: Bank) -> Dict[str, Any]:
+    """Serialize a Bank model for JSON responses."""
     return {"id": bank.id, "name": bank.name, "location": bank.location}
 
 
 @api_bp.get("/banks")
 def list_banks():
+    """List all banks ordered by ID."""
     session = _get_session()
     try:
         banks = session.query(Bank).order_by(Bank.id).all()
@@ -31,6 +34,7 @@ def list_banks():
 
 @api_bp.post("/banks")
 def create_bank():
+    """Create a new bank from the request payload."""
     payload = request.get_json(silent=True) or {}
     name = (payload.get("name") or "").strip()
     location = (payload.get("location") or "").strip()
@@ -53,6 +57,7 @@ def create_bank():
 
 @api_bp.get("/banks/<int:bank_id>")
 def get_bank(bank_id: int):
+    """Return a single bank by ID."""
     session = _get_session()
     try:
         bank = session.get(Bank, bank_id)
@@ -65,6 +70,7 @@ def get_bank(bank_id: int):
 
 @api_bp.put("/banks/<int:bank_id>")
 def update_bank(bank_id: int):
+    """Update an existing bank by ID."""
     payload = request.get_json(silent=True) or {}
     name = (payload.get("name") or "").strip()
     location = (payload.get("location") or "").strip()
@@ -89,6 +95,7 @@ def update_bank(bank_id: int):
 
 @api_bp.delete("/banks/<int:bank_id>")
 def delete_bank(bank_id: int):
+    """Delete a bank by ID."""
     session = _get_session()
     try:
         bank = session.get(Bank, bank_id)
