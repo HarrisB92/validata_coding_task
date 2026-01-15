@@ -57,6 +57,44 @@ def bank_detail(bank_id: int):
         session.close()
 
 
+@banks_bp.get("/<int:bank_id>/edit")
+def edit_bank_form(bank_id: int):
+    session = _get_session()
+    try:
+        bank = session.get(Bank, bank_id)
+        if not bank:
+            abort(404)
+        return render_template("bank_form.html", bank=bank, mode="edit")
+    finally:
+        session.close()
+
+
+@banks_bp.post("/<int:bank_id>/edit")
+def update_bank_ui(bank_id: int):
+    name = (request.form.get("name") or "").strip()
+    location = (request.form.get("location") or "").strip()
+    if not name or not location:
+        # Re-render form with error + existing values
+        return render_template(
+            "bank_form.html",
+            error="Name and location are required.",
+            bank={"id": bank_id, "name": name, "location": location},
+            mode="edit",
+        ), 400
+
+    session = _get_session()
+    try:
+        bank = session.get(Bank, bank_id)
+        if not bank:
+            abort(404)
+        bank.name = name
+        bank.location = location
+        session.commit()
+        return redirect(url_for("banks.bank_detail", bank_id=bank_id))
+    finally:
+        session.close()
+
+
 @banks_bp.post("/<int:bank_id>/delete")
 def delete_bank(bank_id: int):
     session = _get_session()

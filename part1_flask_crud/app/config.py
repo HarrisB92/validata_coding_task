@@ -20,6 +20,7 @@ class AppConfig:
 
     @classmethod
     def from_env(cls) -> "AppConfig":
+        """Load configuration from environment variables with validation."""
         db_server = os.getenv("DB_SERVER", "").strip()
         db_name = os.getenv("DB_NAME", "").strip()
         db_auth_mode = os.getenv("DB_AUTH_MODE", "windows").strip().lower()

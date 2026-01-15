@@ -10,6 +10,7 @@ from .db import create_session_factory
 
 
 def create_app(config_override: Optional[dict] = None) -> Flask:
+    """Create and configure the Flask application."""
     app = Flask(__name__)
     logging.basicConfig(level=logging.INFO)
 
@@ -23,17 +24,19 @@ def create_app(config_override: Optional[dict] = None) -> Flask:
     from .banks import banks_bp  # imported here and not at the top to avoid circular imports
     app.register_blueprint(banks_bp, url_prefix="/banks")
     
-    from .api import api_bp
+    from .api import api_bp  # imported here and not at the top to avoid circular imports
     app.register_blueprint(api_bp, url_prefix="/api")
 
     @app.get("/health")
     def health():
+        """Return a lightweight health check response."""
         return {"status": "ok"}
     
     from flask import redirect, url_for
 
     @app.get("/")
     def index():
+        """Redirect to the bank list view."""
         return redirect(url_for("banks.list_banks"))
     
     return app

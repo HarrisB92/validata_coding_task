@@ -5,12 +5,18 @@
     <title>Bank Details</title>
   </head>
   <body>
+        <nav>
+      <a href="{{ url_for('banks.list_banks') }}">Back to Banks</a>
+    </nav>
+    <hr>
+    <br><br>
+
     {% if bank %}
       <h1>{{ bank.name }}</h1>
       <p>Location: {{ bank.location }}</p>
     {% else %}
       <h1>Bank not found</h1>
     {% endif %}
-    <p><a href="{{ url_for('banks.list_banks') }}">Back to list</a></p>
+    <a href="{{ url_for('banks.edit_bank_form', bank_id=bank.id) }}">Edit</a>
   </body>
 </html>
