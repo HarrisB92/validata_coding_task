@@ -1,0 +1,8 @@
+feature,importance
+credit_score,0.5812171445507334
+income,0.1897568117851142
+loan_amount,0.156595344363875
+employment_status_unemployed,0.0470727756904999
+loan_term,0.025357923609777594
+employment_status_employed,0.0
+employment_status_self-employed,0.0
