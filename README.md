@@ -1,89 +1,98 @@
 # Validata Coding Task
 
-This repository contains two coding tasks completed as part of the
-Senior Data Scientist / Python Developer interview process at Validata Group.
+This repository contains the solution to the coding task provided by Validata Group
+as part of the interview process for the Senior Data Scientist / Python Developer role.
 
-The project is structured to be reproducible, testable, and easy to review.
+The project is divided into two independent parts:
+
+- Part 1: Backend development (Flask CRUD application with SQL Server)
+- Part 2: Machine Learning (Loan approval prediction)
+
+Each part is self-contained and includes its own README with detailed instructions.
 
 ---
 
-## Project Structure
+## Repository Structure
 
 ```
 validata_coding_task/
-├── part1_flask_crud/     # Flask + SQL Server CRUD application
-├── part2_ml/             # Machine Learning task
-├── .env.example          # Environment variables template
-├── AGENTS.md             # Development / Codex instructions
-└── README.md             # This file
-```            
-
+├── part1_flask_crud/        Flask CRUD application (SQL Server)
+├── part2_ml/               Machine Learning task (KNN & Decision Tree)
+├── .env.example            Environment variables template
+├── AGENTS.md               Development / Codex guidance
+└── README.md               This file
+```
 ---
 
 ## Prerequisites
 
+General requirements:
+
 - Python 3.10+
 - Git
-- Microsoft SQL Server (Express or Developer edition)
-- SQL Server Management Studio (SSMS)
-- Microsoft ODBC Driver 18 for SQL Server
+
+Additional requirements per task are documented in the respective subfolders.
 
 ---
 
 ## Configuration
 
-All configuration is provided via environment variables.
-All configuration is provided via environment variables.
+Configuration is handled via environment variables.
 
 1. Copy the example file:
 
    cp .env.example .env
 
-2. Adjust values in `.env` to match your local SQL Server instance.
+2. Edit `.env` to match your local environment.
 
-Note:
-The `.env` file is intentionally NOT committed to the repository.
-
----
-
-## Part 1 — Flask CRUD Application
-
-See `part1_flask_crud/README.md` for:
-
-- Database initialization
-- Running the Flask application
-- REST API usage
-- Running tests
-
----
-
-## Part 2 — Machine Learning Task
-
-See `part2_ml/README.md` and `part2_ml/report.md` for:
-
-- Dataset description
-- Preprocessing steps
-- Model training and evaluation
-- Findings and insights
+Important:
+- The `.env` file is environment-specific
+- It is intentionally NOT committed to the repository
 
 ---
 
 ## Part 1 — Flask CRUD Application
 
-See `part1_flask_crud/README.md` for:
+Part 1 implements a CRUD application for managing banks using:
 
-- Database initialization
-- Running the Flask application
-- REST API usage
-- Running tests
+- Flask
+- Microsoft SQL Server
+- SQLAlchemy
+- REST API and HTML UI
+- PyTest for testing
+
+Detailed setup, database initialization, API usage, and testing instructions are
+available in:
+
+   part1_flask_crud/README.md
 
 ---
 
 ## Part 2 — Machine Learning Task
 
-See `part2_ml/README.md` and `part2_ml/report.md` for:
+Part 2 focuses on predicting loan approval using:
 
-- Dataset description
-- Preprocessing steps
+- K-Nearest Neighbors (KNN)
+- Decision Tree classifiers
+- Synthetic dataset generation
+- Feature preprocessing and evaluation
+
+The task includes:
+- Dataset generation
 - Model training and evaluation
-- Findings and insights
+- Feature importance analysis
+- Business insights report
+
+Detailed instructions and findings are available in:
+
+- part2_ml/README.md
+- part2_ml/report.md
+
+---
+
+## Notes
+
+- Each task can be reviewed and executed independently.
+- The repository is structured to emphasize clarity, reproducibility, and
+  professional software and data science practices.
+- No secrets or credentials are committed to version control.
