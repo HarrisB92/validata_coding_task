@@ -66,13 +66,6 @@ See `part2_ml/README.md` and `part2_ml/report.md` for:
 - Model training and evaluation
 - Findings and insights
 
-   cp .env.example .env
-
-2. Adjust values in `.env` to match your local SQL Server instance.
-
-Note:
-The `.env` file is intentionally NOT committed to the repository.
-
 ---
 
 ## Part 1 — Flask CRUD Application
